@@ -12,6 +12,7 @@ export const routes: Routes = [
     { path: '', component: MejoresPropiedadesComponent},
     { path: 'pruebaPost', component: CrearPropiedadComponent},
     { path: 'pruebaGet', component: ListarPropiedadesComponent},
+    { path: 'propiedad/:id', component: ListarPropiedadesComponent},
     { path: 'Arrendadores/nuevo', component: CrearArrendadorComponent},
     { path: 'Arrendadores', component: ListarArrendadoresComponent},
     { path: 'Arrendatarios/nuevo', component: CrearArrendatarioComponent},

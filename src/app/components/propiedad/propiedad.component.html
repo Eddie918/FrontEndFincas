@@ -1,1 +1,14 @@
-<p>propiedad works!</p>
+<div *ngIf="propiedad" class="propiedad-container">
+    <div class="propiedad-imagen">
+      <img [src]="propiedad?.imagenUrl" alt="Imagen de la propiedad">
+    </div>
+    <div class="propiedad-detalles">
+      <h2>{{ propiedad?.descripcion }}</h2>
+      <p><strong>Ubicación:</strong> {{ propiedad?.ubicacion }}</p>
+      <p><strong>Precio:</strong> {{ propiedad?.precio }}</p>
+      <p><strong>Calificación:</strong> {{ propiedad?.calificacion }}</p>
+      <p><strong>Disponibilidad:</strong> {{ propiedad?.disponibilidad ? 'Disponible' : 'No disponible' }}</p>
+      <button (click)="solicitarArrendamiento()">Solicitar arrendamiento</button>
+    </div>
+  </div>
+  

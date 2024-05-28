@@ -8,6 +8,8 @@
       <p>Precio: {{ propiedad.precio }}</p>
       <p>Ubicación: {{ propiedad.ubicacion }}</p>
       <p>Disponibilidad: {{ propiedad.disponibilidad }}</p>
+      <p>Descripción: {{ propiedad.descripcion }}</p>
+      <button (click)="consultarPropiedad(propiedad.id_propiedad)">Consultar propiedad</button>
     </div>
   </ng-template>
 </ngb-carousel>

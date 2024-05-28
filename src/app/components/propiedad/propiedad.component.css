@@ -1,0 +1,24 @@
+.propiedad-container {
+    display: flex;
+    align-items: flex-start;
+    margin: 20px 0;
+  }
+  
+  .propiedad-imagen img {
+    max-width: 300px;
+    max-height: 300px;
+    margin-right: 20px;
+    object-fit: cover;
+  }
+  
+  .propiedad-detalles {
+    flex: 1;
+  }
+  
+  .propiedad-detalles h2 {
+    margin-top: 0;
+  }
+  
+  .propiedad-detalles p {
+    margin: 5px 0;
+  }
