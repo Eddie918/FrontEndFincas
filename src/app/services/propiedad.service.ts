@@ -22,6 +22,11 @@ export class PropiedadService {
     
   }
 
+  getPropiedad(id: number): Promise<Propiedad> {
+    const url = `${this.apiUrl}/${id}`;
+    return axios.get<Propiedad>(url).then(response => response.data);
+  }
+
   mejoresPropiedades(): Promise< Propiedad[] >{
     const url = `${this.apiUrl}/mejores`;
     const propiedades = axios.get< Propiedad[] >(url).then(response => response.data);
