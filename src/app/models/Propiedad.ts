@@ -5,7 +5,8 @@ export class Propiedad{
         public precio?: number|null,
         public ubicacion?: string|null,
         public disponibilidad?: number|null,
-        public imagenUrl?: string|null
+        public imagenUrl?: string|null,
+        public descripcion?: string|null
 
     ){}
 }
