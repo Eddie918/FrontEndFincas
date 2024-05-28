@@ -1,3 +1,4 @@
+<!-- src/app/inicio-de-sesion/inicio-de-sesion.component.html -->
 <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
   <div>
     <label for="username">Username:</label>
@@ -8,4 +9,5 @@
     <input id="password" type="password" formControlName="password">
   </div>
   <button type="submit">Login</button>
+  <div *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</div>
 </form>
