@@ -1,8 +1,8 @@
-// src/app/inicio-de-sesion/inicio-de-sesion.component.ts
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AxiosService } from '../../axios.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inicio-de-sesion',
@@ -15,7 +15,11 @@ export class InicioDeSesionComponent implements OnInit {
   loginForm: FormGroup;
   errorMessage: string | null = null;
 
-  constructor(private formBuilder: FormBuilder, private axiosService: AxiosService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private axiosService: AxiosService,
+    private router: Router // Inyecta el servicio de router para redirección
+  ) {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -32,11 +36,12 @@ export class InicioDeSesionComponent implements OnInit {
       username: this.loginForm.value.username,
       password: this.loginForm.value.password
     };
-    this.axiosService.request('post', '/autenticar', loginData)
+    this.axiosService.request('post', '/jwt/security/autenticar', loginData) // Asegúrate de que la URL coincida con tu backend
       .then(response => {
         const token = response.data.token;
         this.axiosService.setAuthToken(token);
         // Redirecciona o realiza cualquier otra acción según tu lógica de autenticación
+        this.router.navigate(['/dashboard']); // Ejemplo de redirección
       })
       .catch(error => {
         console.error(error);
