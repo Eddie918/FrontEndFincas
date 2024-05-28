@@ -1,3 +1,4 @@
+// src/app/axios.service.ts
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 
@@ -7,7 +8,7 @@ import axios from 'axios';
 export class AxiosService {
 
   constructor() {
-    axios.defaults.baseURL = 'http://localhost:8080/jwt/security/autenticar';
+    axios.defaults.baseURL = 'http://localhost:8080/jwt/security';
     axios.defaults.headers.post['Content-Type'] = 'application/json';
   }
 
