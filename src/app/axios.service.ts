@@ -7,7 +7,7 @@ import axios from 'axios';
 export class AxiosService {
 
   constructor() {
-    axios.defaults.baseURL = 'http://localhost:8080'; // Ajusta la base URL si es necesario
+    axios.defaults.baseURL = 'http://localhost:8080/jwt/security/autenticar'; // Ajusta la base URL si es necesario
     axios.defaults.headers.post['Content-Type'] = 'application/json';
   }
 
