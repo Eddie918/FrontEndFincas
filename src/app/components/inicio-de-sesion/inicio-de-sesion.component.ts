@@ -1,23 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { AutenticacionService } from '../../autenticacion.service';
+import { AxiosService } from '../../axios.service';
 
 @Component({
   selector: 'app-inicio-de-sesion',
   standalone: true,
-  imports: [ReactiveFormsModule, HttpClientModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './inicio-de-sesion.component.html',
   styleUrls: ['./inicio-de-sesion.component.css']
 })
 export class InicioDeSesionComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private autenticacionService: AutenticacionService) {
+  constructor(private formBuilder: FormBuilder, private axiosService: AxiosService) {
     this.loginForm = this.formBuilder.group({
-      nombre: ['', Validators.required],
-      apellido: ['', Validators.required],
-      contrasena: ['', Validators.required]
+      username: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 
@@ -27,15 +25,14 @@ export class InicioDeSesionComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    this.autenticacionService.login(this.loginForm.value).subscribe(
-      (response: any) => {
-        localStorage.setItem('token', response.token);
+    this.axiosService.request('post', '/autenticar', this.loginForm.value)
+      .then(response => {
+        const token = response.data.token;
+        localStorage.setItem('auth_token', token);
         // Otros campos según tu lógica de autenticación
-
-      },
-      (error: any) => {
+      })
+      .catch(error => {
         console.error(error);
-      }
-    );
+      });
   }
 }
