@@ -6,26 +6,24 @@ import { ArrendatarioService } from '../../services/arrendatario.service';
 @Component({
   selector: 'app-crear-arrendatario',
   standalone: true,
-  imports: [FormsModule ],
+  imports: [FormsModule],
   templateUrl: './crear-arrendatario.component.html',
-  styleUrl: './crear-arrendatario.component.css'
+  styleUrls: ['./crear-arrendatario.component.css']
 })
 export class CrearArrendatarioComponent {
-arrendatario: Arrendatario;
+  arrendatario: Arrendatario;
 
-constructor(
-private arrendatarioService: ArrendatarioService,
-){  
-this.arrendatario = new Arrendatario();
-}
+  constructor(
+    private arrendatarioService: ArrendatarioService,
+  ) {
+    this.arrendatario = new Arrendatario();
+  }
 
-crearArrendatario( ){
-this.arrendatarioService.crearArrendatario( this.arrendatario ).then(response =>
-{
-  window.location.href = "/";
-  }, error => {
-    console.error('Error: ',error);
-  });
-}
-
+  crearArrendatario() {
+    this.arrendatarioService.crearArrendatario(this.arrendatario).then(response => {
+      window.location.href = "/";
+    }, error => {
+      console.error('Error: ', error);
+    });
+  }
 }

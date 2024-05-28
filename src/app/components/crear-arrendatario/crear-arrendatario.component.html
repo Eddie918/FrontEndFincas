@@ -4,20 +4,28 @@
       <h1 class="display-4">Crear Cuenta Arrendatario</h1>
       <form (ngSubmit)="crearArrendatario()">
         <div class="form-group">
+          <label for="username">Nombre de Usuario</label>
+          <input type="text" id="username" name="username" [(ngModel)]="arrendatario.username" class="form-control" />
+        </div>
+        <div class="form-group">
           <label for="nombre">Nombre</label>
-          <input type="text" id="nombre" name="Nombre" [(ngModel)]="arrendatario.nombre" class="form-control" />
+          <input type="text" id="nombre" name="nombre" [(ngModel)]="arrendatario.nombre" class="form-control" />
         </div>
         <div class="form-group">
           <label for="apellido">Apellido</label>
-          <input type="text" id="apellido" name="Apellido" [(ngModel)]="arrendatario.apellido" class="form-control" />
+          <input type="text" id="apellido" name="apellido" [(ngModel)]="arrendatario.apellido" class="form-control" />
         </div>
         <div class="form-group">
           <label for="telefono">Teléfono</label>
-          <input type="text" id="telefono" name="Teléfono" [(ngModel)]="arrendatario.telefono" class="form-control" />
+          <input type="text" id="telefono" name="telefono" [(ngModel)]="arrendatario.telefono" class="form-control" />
         </div>
         <div class="form-group">
           <label for="correo">Correo</label>
-          <input type="text" id="correo" name="Correo" [(ngModel)]="arrendatario.correo" class="form-control" />
+          <input type="text" id="correo" name="correo" [(ngModel)]="arrendatario.correo" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" name="password" [(ngModel)]="arrendatario.password" class="form-control" />
         </div>
         <button type="submit" class="btn btn-primary btn-lg btn-block">Crear</button>
       </form>

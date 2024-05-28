@@ -2,22 +2,30 @@
   <div class="container">
     <div class="form-container">
       <h1 class="display-4">Crear Cuenta Arrendador</h1>
-      <form (ngSubmit)="crearArrendador()" class="arrendador-form">
+      <form (ngSubmit)="crearArrendador()">
+        <div class="form-group">
+          <label for="username">Nombre de Usuario</label>
+          <input type="text" id="username" name="username" [(ngModel)]="arrendador.username" class="form-control" />
+        </div>
         <div class="form-group">
           <label for="nombre">Nombre</label>
-          <input type="text" id="nombre" name="Nombre" [(ngModel)]="arrendador.nombre" class="form-control" />
+          <input type="text" id="nombre" name="nombre" [(ngModel)]="arrendador.nombre" class="form-control" />
         </div>
         <div class="form-group">
           <label for="apellido">Apellido</label>
-          <input type="text" id="apellido" name="Apellido" [(ngModel)]="arrendador.apellido" class="form-control" />
+          <input type="text" id="apellido" name="apellido" [(ngModel)]="arrendador.apellido" class="form-control" />
         </div>
         <div class="form-group">
           <label for="telefono">Teléfono</label>
-          <input type="text" id="telefono" name="Teléfono" [(ngModel)]="arrendador.telefono" class="form-control" />
+          <input type="text" id="telefono" name="telefono" [(ngModel)]="arrendador.telefono" class="form-control" />
         </div>
         <div class="form-group">
           <label for="correo">Correo</label>
-          <input type="text" id="correo" name="Correo" [(ngModel)]="arrendador.correo" class="form-control" />
+          <input type="text" id="correo" name="correo" [(ngModel)]="arrendador.correo" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" name="password" [(ngModel)]="arrendador.password" class="form-control" />
         </div>
         <button type="submit" class="btn btn-primary btn-lg btn-block">Crear</button>
       </form>
