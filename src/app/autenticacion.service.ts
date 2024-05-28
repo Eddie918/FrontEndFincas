@@ -6,10 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AutenticacionService {
-  private url = 'http://localhost:3000';
+  private apiUrl = 'http://localhost:8080/jwt/security/autenticar'; // URL base de tu API
+
   constructor(private http: HttpClient) { }
 
-  login(credentials: {username: string, password: string}): Observable<any> {
-    return this.http.post(`${this.url}/login`, credentials);
+  login(credentials: { nombre: string; apellido: string; contrasena: string }): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/autenticar`, credentials);
   }
-} // Add closing curly brace here
+}
