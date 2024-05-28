@@ -1,78 +1,69 @@
-/* Estilos generales del carrusel */
-.ngb-carousel {
-    max-width: 100%;
-    margin: auto;
-    position: relative;
-  }
-  
-  /* Estilos para el contenedor de la imagen dentro del carrusel */
-  .picsum-img-wrapper {
-    display: flex; /* Utiliza flexbox para centrar la imagen */
-    justify-content: center; /* Centra la imagen horizontalmente */
-    align-items: center; /* Centra la imagen verticalmente (si es necesario) */
-    margin: 1rem; /* Añade margen alrededor del contenedor de la imagen */
-  }
-  
-  /* Estilos para las imágenes dentro del carrusel */
-  .picsum-img-wrapper img {
-    max-width: 50%; /* Establece un ancho máximo para la imagen */
-    border-radius: 30px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
-  }
-  
-  /* Estilos para el caption (título y detalles) del carrusel */
-  .carousel-caption {
-    text-align: center;
-    background: rgba(255, 255, 255, 0.85);
-    border-radius: 10px;
-    padding: 1rem;
-    margin-top: 1rem;
-    position: absolute;
-    bottom: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .carousel-caption h3 {
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 0.5rem;
-  }
-  
-  .carousel-caption p {
-    color: #555;
-    font-size: 16px;
-    margin-bottom: 0.5rem;
-  }
-  
-  /* Estilos para los botones de navegación del carrusel */
-  .ngb-carousel .carousel-control-prev,
-  .ngb-carousel .carousel-control-next {
-    width: 4rem;
-    height: 4rem;
-    border-radius: 50%;
-    background-color: #ddd;
-    border: none;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-  }
-  
-  .ngb-carousel .carousel-control-prev:hover,
-  .ngb-carousel .carousel-control-next:hover {
-    background-color: #ccc;
-  }
-  
-  /* Añade una pequeña animación al cambiar de imágenes */
-  .ngb-carousel .carousel-control-prev,
-  .ngb-carousel .carousel-control-next,
-  .picsum-img-wrapper img {
-    transition: all 0.25s ease;
-  }
-  
-  .picsum-img-wrapper img:hover {
-    transform: scale(1.05);
-  }
-  
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.crear-arrendatario-bg {
+  background-color: #1d2d35; /* Color de fondo específico */
+  color: #fff; /* Color del texto */
+  min-height: 100vh; /* Asegura que cubra toda la altura de la página */
+  padding: 60px 0; /* Espaciado superior e inferior */
+}
+
+.form-container {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 60px auto;
+  color: #333; /* Color del texto dentro del formulario */
+}
+
+.form-container .display-4 {
+  font-weight: 700;
+  color: #3b5d50;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.btn-primary {
+  background-color: #3b5d50;
+  border-color: #3b5d50;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.btn-primary:hover {
+  background-color: #2d473f;
+  border-color: #2d473f;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+  text-align: center;
+}
