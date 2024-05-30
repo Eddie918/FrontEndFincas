@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CommonModule } from '@angular/common';
 import { AxiosService } from '../../axios.service';
 import { Router } from '@angular/router';
+import { Arrendador } from '../../models/Arrendador';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-inicio-de-sesion',
@@ -14,12 +16,15 @@ import { Router } from '@angular/router';
 export class InicioDeSesionComponent implements OnInit {
   loginForm: FormGroup;
   errorMessage: string | null = null;
+  arrendador: Arrendador;
 
   constructor(
     private formBuilder: FormBuilder,
     private axiosService: AxiosService,
+    private loginService: LoginService,
     private router: Router // Inyecta el servicio de router para redirección
   ) {
+    this.arrendador = new Arrendador();
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -28,28 +33,20 @@ export class InicioDeSesionComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     if (this.loginForm.invalid) {
       return;
     }
-    const loginData = {
-      username: this.loginForm.value.username,
-      password: this.loginForm.value.password
-    };
-    this.axiosService.request('post', '/jwt/security/autenticar', loginData) // Asegúrate de que la URL coincida con tu backend
-      .then(response => {
-        const token = response.data.token;
-        this.axiosService.setAuthToken(token);
-        // Redirecciona o realiza cualquier otra acción según tu lógica de autenticación
-        this.router.navigate(['/dashboard']); // Ejemplo de redirección
-      })
-      .catch(error => {
-        console.error(error);
-        if (error.response && error.response.status === 403) {
-          this.errorMessage = "Credenciales incorrectas. Por favor, inténtelo de nuevo.";
-        } else {
-          this.errorMessage = "Se produjo un error. Por favor, inténtelo de nuevo más tarde.";
-        }
-      });
+
+    try {
+      const result = await this.loginService.autenticar(this.arrendador);
+      console.log('Token:', result.token);
+      // Almacenar el token y redirigir a otra página si es necesario
+      localStorage.setItem('token', result.token);
+      this.router.navigate(['/']); // Cambia '/ruta-a-donde-redirigir' por la ruta a la que quieres redirigir
+    } catch (error) {
+      console.error('Error durante la autenticación', error);
+      this.errorMessage = 'Credenciales incorrectas';
+    }
   }
 }

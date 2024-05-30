@@ -16,6 +16,7 @@ export class PropiedadComponent implements OnInit {
   constructor(private propiedadService: PropiedadService) { }
 
   ngOnInit(): void {
+    console.log(`propiedad : ${this.propiedadId}`);
     this.loadPropiedad();
   }
 
