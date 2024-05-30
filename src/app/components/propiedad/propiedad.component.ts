@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+
 import { Propiedad } from '../../models/Propiedad';
 import { PropiedadService } from '../../services/propiedad.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-propiedad',
@@ -13,11 +15,22 @@ export class PropiedadComponent implements OnInit {
   @Input() propiedadId!: number;
   propiedad: Propiedad | null = null;
 
-  constructor(private propiedadService: PropiedadService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private propiedadService: PropiedadService
+  ) { }
 
   ngOnInit(): void {
-    console.log(`propiedad : ${this.propiedadId}`);
-    this.loadPropiedad();
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      if (id) {
+        this.propiedadId = +id; // Convertir el id a número
+        console.log(`propiedad : ${this.propiedadId}`);
+        this.loadPropiedad();
+      } else {
+        console.error('El ID de la propiedad no es válido');
+      }
+    });
   }
 
   loadPropiedad(): void {
@@ -30,6 +43,6 @@ export class PropiedadComponent implements OnInit {
 
   solicitarArrendamiento(): void {
     console.log(`Solicitar arrendamiento para la propiedad con ID: ${this.propiedad?.id_propiedad}`);
-    // Aquí puedes agregar la lógica para solicitar el arrendamiento
+    // Aquí se agregará la lógica para solicitar el arrendamiento
   }
 }
