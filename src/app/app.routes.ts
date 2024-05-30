@@ -8,6 +8,8 @@ import { ListarArrendatariosComponent } from './components/listar-arrendatarios/
 import { MejoresPropiedadesComponent } from './components/mejores-propiedades/mejores-propiedades.component';
 import { InicioDeSesionComponent } from './components/inicio-de-sesion/inicio-de-sesion.component';
 import { PropiedadComponent } from './components/propiedad/propiedad.component';
+import { CrearSolicitudComponent } from './components/crear-solicitud/crear-solicitud.component';
+
 
 export const routes: Routes = [
     { path: '', component: MejoresPropiedadesComponent},
@@ -18,6 +20,8 @@ export const routes: Routes = [
     { path: 'Arrendadores', component: ListarArrendadoresComponent},
     { path: 'Arrendatarios/nuevo', component: CrearArrendatarioComponent},
     { path: 'Arrendatarios', component: ListarArrendatariosComponent},
-    { path: 'login', component: InicioDeSesionComponent}
+    { path: 'login', component: InicioDeSesionComponent},
+    { path: 'crear-solicitud', component: CrearSolicitudComponent },
+
 
 ];

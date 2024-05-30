@@ -1,0 +1,29 @@
+<!-- src/app/components/crear-solicitud/crear-solicitud.component.html -->
+
+<div class="crear-solicitud-bg">
+  <div class="container">
+    <div class="form-container">
+      <h1 class="display-4">Crear Solicitud</h1>
+      <form [formGroup]="solicitudForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="duracion">Duración:</label>
+          <input id="duracion" formControlName="duracion" type="number" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="estado">Estado:</label>
+          <input id="estado" formControlName="estado" type="number" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="id_propiedad">Propiedad:</label>
+          <select id="id_propiedad" formControlName="id_propiedad" class="form-control">
+            <option *ngFor="let propiedad of propiedades" [value]="propiedad.id_propiedad">{{ propiedad.descripcion }}</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Enviar Solicitud</button>
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
