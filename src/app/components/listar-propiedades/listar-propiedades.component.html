@@ -1,3 +1,4 @@
+<!-- src/app/components/listar-propiedades/listar-propiedades.component.html -->
 <ngb-carousel>
   <ng-template ngbSlide *ngFor="let propiedad of propiedades">
     <div class="picsum-img-wrapper">
@@ -10,6 +11,7 @@
       <p>Disponibilidad: {{ propiedad.disponibilidad }}</p>
       <p>Descripción: {{ propiedad.descripcion }}</p>
       <button (click)="consultarPropiedad(propiedad.id_propiedad)">Consultar propiedad</button>
+      <button *ngIf="isLoggedIn()" (click)="solicitarArrendamiento(propiedad.id_propiedad)">Solicitar arrendamiento</button>
     </div>
   </ng-template>
 </ngb-carousel>

@@ -9,19 +9,17 @@ import { MejoresPropiedadesComponent } from './components/mejores-propiedades/me
 import { InicioDeSesionComponent } from './components/inicio-de-sesion/inicio-de-sesion.component';
 import { PropiedadComponent } from './components/propiedad/propiedad.component';
 import { CrearSolicitudComponent } from './components/crear-solicitud/crear-solicitud.component';
-
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
-    { path: '', component: MejoresPropiedadesComponent},
-    { path: 'pruebaPost', component: CrearPropiedadComponent},
-    { path: 'pruebaGet', component: ListarPropiedadesComponent},
-    { path: 'propiedad/:id', component: PropiedadComponent},
-    { path: 'Arrendadores/nuevo', component: CrearArrendadorComponent},
-    { path: 'Arrendadores', component: ListarArrendadoresComponent},
-    { path: 'Arrendatarios/nuevo', component: CrearArrendatarioComponent},
-    { path: 'Arrendatarios', component: ListarArrendatariosComponent},
-    { path: 'login', component: InicioDeSesionComponent},
-    { path: 'crear-solicitud', component: CrearSolicitudComponent },
-
-
+  { path: '', component: MejoresPropiedadesComponent },
+  { path: 'pruebaPost', component: CrearPropiedadComponent },
+  { path: 'pruebaGet', component: ListarPropiedadesComponent },
+  { path: 'propiedad/:id', component: PropiedadComponent },
+  { path: 'Arrendadores/nuevo', component: CrearArrendadorComponent },
+  { path: 'Arrendadores', component: ListarArrendadoresComponent },
+  { path: 'Arrendatarios/nuevo', component: CrearArrendatarioComponent },
+  { path: 'Arrendatarios', component: ListarArrendatariosComponent },
+  { path: 'login', component: InicioDeSesionComponent },
+  { path: 'crear-solicitud/:id', component: CrearSolicitudComponent, canActivate: [AuthGuard] },
 ];
