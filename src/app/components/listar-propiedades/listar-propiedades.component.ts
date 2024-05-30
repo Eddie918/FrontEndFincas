@@ -1,4 +1,3 @@
-// src/app/components/listar-propiedades/listar-propiedades.component.ts
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
