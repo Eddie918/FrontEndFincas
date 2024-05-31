@@ -17,6 +17,7 @@ export class CrearArrendadorComponent {
     private arrendadorService: ArrendadorService,
   ) {
     this.arrendador = new Arrendador();
+    this.arrendador.role = "ARRENDADOR";
   }
 
   crearArrendador() {

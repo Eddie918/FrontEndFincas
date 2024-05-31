@@ -1,6 +1,7 @@
 // src/app/services/login.service.ts
 
 import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import axios from 'axios';
 
 @Injectable({
@@ -8,6 +9,7 @@ import axios from 'axios';
 })
 export class LoginService {
   private apiUrl: string = 'http://localhost:8080/jwt/security/autenticar';
+  private jwtHelper = new JwtHelperService();
 
   constructor() {}
 
@@ -27,4 +29,14 @@ export class LoginService {
     }
     return false;
   }
+
+  getRole(): string {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken = this.jwtHelper.decodeToken(token);
+      return decodedToken.role;
+    }
+    return '';
+  }
+
 }

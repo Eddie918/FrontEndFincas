@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Arrendatario } from '../../models/Arrendatario';
 import { ArrendatarioService } from '../../services/arrendatario.service';
+import { Arrendador } from '../../models/Arrendador';
+import { ArrendadorService } from '../../services/arrendador.service';
 
 @Component({
   selector: 'app-crear-arrendatario',
@@ -11,16 +13,17 @@ import { ArrendatarioService } from '../../services/arrendatario.service';
   styleUrls: ['./crear-arrendatario.component.css']
 })
 export class CrearArrendatarioComponent {
-  arrendatario: Arrendatario;
+  arrendatario: Arrendador;
 
   constructor(
-    private arrendatarioService: ArrendatarioService,
+    private arrendatarioService: ArrendadorService,
   ) {
-    this.arrendatario = new Arrendatario();
+    this.arrendatario = new Arrendador();
+    this.arrendatario.role = "ARRENDATARIO";
   }
 
   crearArrendatario() {
-    this.arrendatarioService.crearArrendatario(this.arrendatario).then(response => {
+    this.arrendatarioService.crearArrendador(this.arrendatario).then(response => {
       window.location.href = "/";
     }, error => {
       console.error('Error: ', error);

@@ -8,5 +8,6 @@ export class Arrendador {
         public telefono?: string | null,
         public correo?: string | null,
         public password?: string | null,
+        public role?: string | null
     ) {}
 }

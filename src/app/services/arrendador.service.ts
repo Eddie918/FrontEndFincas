@@ -19,6 +19,10 @@ export class ArrendadorService {
     return axios.post<Arrendador>(this.apiUrl, arrendador).then(response => response.data);
   }
 
+  registrarArrendador(arrendador: Arrendador): Promise<Arrendador> {
+    return axios.post<Arrendador>(this.apiUrl, arrendador).then(response => response.data);
+  }
+
   listarArrendadores(): Promise<Arrendador[]> {
     return axios.get<Arrendador[]>(this.apiUrl).then(response => response.data);
   }
