@@ -10,6 +10,7 @@
       <p>Disponibilidad: {{ propiedad.disponibilidad }}</p>
       <p>Descripción: {{ propiedad.descripcion }}</p>
       <button (click)="consultarPropiedad(propiedad.id_propiedad)">Consultar propiedad</button>
+      <button *ngIf="isLoggedIn()" (click)="solicitarArrendamiento(propiedad.id_propiedad)">Solicitar arrendamiento</button>
     </div>
   </ng-template>
 </ngb-carousel>

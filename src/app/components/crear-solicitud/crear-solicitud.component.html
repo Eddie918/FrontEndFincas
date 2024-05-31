@@ -1,5 +1,3 @@
-<!-- src/app/components/crear-solicitud/crear-solicitud.component.html -->
-
 <div class="crear-solicitud-bg">
   <div class="container">
     <div class="form-container">
@@ -11,13 +9,11 @@
         </div>
         <div class="form-group">
           <label for="estado">Estado:</label>
-          <input id="estado" formControlName="estado" type="number" class="form-control">
+          <input id="estado" formControlName="estado" type="text" class="form-control">
         </div>
         <div class="form-group">
           <label for="id_propiedad">Propiedad:</label>
-          <select id="id_propiedad" formControlName="id_propiedad" class="form-control">
-            <option *ngFor="let propiedad of propiedades" [value]="propiedad.id_propiedad">{{ propiedad.descripcion }}</option>
-          </select>
+          <input id="id_propiedad" formControlName="id_propiedad" type="text" class="form-control" readonly>
         </div>
         <button type="submit" class="btn btn-primary btn-block">Enviar Solicitud</button>
         <div *ngIf="errorMessage" class="error-message">

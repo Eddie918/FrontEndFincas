@@ -14,7 +14,7 @@ import { AccesoArrendatarioComponent } from './testComponent/acceso-arrendatario
 import { AccesoArrendadorComponent } from './testComponent/acceso-arrendador/acceso-arrendador.component';
 import { RoleGuard } from './role-guard.guard';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
-
+import { AuthGuard } from './guards/auth.guard';
 
 
 export const routes: Routes = [
@@ -28,6 +28,7 @@ export const routes: Routes = [
     { path: 'Arrendatarios', component: ListarArrendatariosComponent},
     { path: 'login', component: InicioDeSesionComponent},
     { path: 'crear-solicitud', component: CrearSolicitudComponent },
+    { path: 'crear-solicitud/:id', component: CrearSolicitudComponent, canActivate: [AuthGuard] },
     { path: 'access-denied', component: AccessDeniedComponent },
     { 
         path: 'accesoArrendador',
@@ -41,6 +42,6 @@ export const routes: Routes = [
         canActivate: [RoleGuard], data:
         { expectedRoles: ['ARRENDATARIO', 'ADMIN']}
     },
-    
-];
 
+
+];
