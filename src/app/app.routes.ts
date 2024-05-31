@@ -15,20 +15,21 @@ import { AccesoArrendadorComponent } from './testComponent/acceso-arrendador/acc
 import { RoleGuard } from './role-guard.guard';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { AuthGuard } from './guards/auth.guard';
-
+import { SolicitudConfirmacionComponent } from './solicitud-confirmacion/solicitud-confirmacion.component';
 
 export const routes: Routes = [
-    { path: '', component: MejoresPropiedadesComponent},
-    { path: 'pruebaPost', component: CrearPropiedadComponent},
-    { path: 'pruebaGet', component: ListarPropiedadesComponent},
-    { path: 'propiedad/:id', component: PropiedadComponent},
-    { path: 'Arrendadores/nuevo', component: CrearArrendadorComponent},
-    { path: 'Arrendadores', component: ListarArrendadoresComponent},
-    { path: 'Arrendatarios/nuevo', component: CrearArrendatarioComponent},
-    { path: 'Arrendatarios', component: ListarArrendatariosComponent},
-    { path: 'login', component: InicioDeSesionComponent},
-    { path: 'crear-solicitud', component: CrearSolicitudComponent },
-    { path: 'crear-solicitud/:id', component: CrearSolicitudComponent, canActivate: [AuthGuard] },
+    { path: '', component: MejoresPropiedadesComponent },
+    { path: 'pruebaPost', component: CrearPropiedadComponent },
+    { path: 'pruebaGet', component: ListarPropiedadesComponent },
+    { path: 'propiedad/:id', component: PropiedadComponent },
+    { path: 'Arrendadores/nuevo', component: CrearArrendadorComponent },
+    { path: 'Arrendadores', component: ListarArrendadoresComponent },
+    { path: 'Arrendatarios/nuevo', component: CrearArrendatarioComponent },
+    { path: 'Arrendatarios', component: ListarArrendatariosComponent },
+    { path: 'login', component: InicioDeSesionComponent },
+    { path: 'crear-solicitud', component: CrearSolicitudComponent, canActivate: [AuthGuard, RoleGuard], data: { expectedRoles: ['ARRENDATARIO'] } },
+    { path: 'crear-solicitud/:id', component: CrearSolicitudComponent, canActivate: [AuthGuard, RoleGuard], data: { expectedRoles: ['ARRENDATARIO'] } },
+    { path: 'solicitud-aceptada', component: SolicitudConfirmacionComponent },
     { path: 'access-denied', component: AccessDeniedComponent },
     { 
         path: 'accesoArrendador',
@@ -40,8 +41,12 @@ export const routes: Routes = [
         path: 'accesoArrendatario',
         component: AccesoArrendatarioComponent,
         canActivate: [RoleGuard], data:
-        { expectedRoles: ['ARRENDATARIO', 'ADMIN']}
+        { expectedRoles: ['ARRENDATARIO', 'ADMIN'] }
     },
-
-
 ];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }

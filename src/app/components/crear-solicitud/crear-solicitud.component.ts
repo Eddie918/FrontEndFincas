@@ -16,6 +16,7 @@ import { CommonModule } from '@angular/common';
 export class CrearSolicitudComponent implements OnInit {
   solicitudForm: FormGroup;
   errorMessage: string = '';
+  propiedad: any;
 
   constructor(
     private fb: FormBuilder,
@@ -32,16 +33,28 @@ export class CrearSolicitudComponent implements OnInit {
 
     if (!this.loginService.isLoggedIn()) {
       this.router.navigate(['login']);
+    } else {
+      const role = this.loginService.getRole();
+      if (role !== 'ARRENDATARIO') {
+        this.router.navigate(['access-denied']);
+      }
     }
   }
 
   ngOnInit(): void {
-    const propiedadId = this.route.snapshot.paramMap.get('id');
-    if (propiedadId) {
+    this.route.queryParams.subscribe(params => {
+      this.propiedad = {
+        id: params['id'],
+        precio: params['precio'],
+        ubicacion: params['ubicacion'],
+        disponibilidad: params['disponibilidad'],
+        descripcion: params['descripcion']
+      };
+
       this.solicitudForm.patchValue({
-        id_propiedad: propiedadId
+        id_propiedad: params['id']
       });
-    }
+    });
   }
 
   async onSubmit(): Promise<void> {
@@ -52,7 +65,7 @@ export class CrearSolicitudComponent implements OnInit {
     try {
       const solicitud: Solicitud = this.solicitudForm.value;
       await this.solicitudService.createSolicitud(solicitud);
-      this.router.navigate(['/']); // Cambia la ruta de redirección según sea necesario
+      this.router.navigate(['/solicitud-aceptada'], { queryParams: this.propiedad }); // Redirige a la página de confirmación con los detalles de la propiedad
     } catch (error) {
       this.errorMessage = 'Error al crear la solicitud';
       console.error('Error al crear la solicitud', error);

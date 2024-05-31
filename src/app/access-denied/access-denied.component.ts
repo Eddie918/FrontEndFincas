@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-access-denied',
@@ -8,5 +10,12 @@ import { Component } from '@angular/core';
   styleUrl: './access-denied.component.css'
 })
 export class AccessDeniedComponent {
+  constructor(private router: Router) {}
 
+  goToHome(): void {
+    this.router.navigate(['/']);
+  }
 }
+
+
+

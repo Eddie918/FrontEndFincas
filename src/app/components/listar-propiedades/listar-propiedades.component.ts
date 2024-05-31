@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule, Router } from '@angular/router';
 import { PropiedadService } from '../../services/propiedad.service';
-import { AxiosService } from '../../axios.service';
+import { LoginService } from '../../services/login.service';
 import { Propiedad } from '../../models/Propiedad';
 
 @Component({
@@ -21,7 +21,7 @@ export class ListarPropiedadesComponent implements OnInit {
   constructor(
     private propiedadService: PropiedadService,
     private router: Router,
-    private axiosService: AxiosService
+    private loginService: LoginService
   ) {}
 
   ngOnInit(): void {
@@ -47,13 +47,25 @@ export class ListarPropiedadesComponent implements OnInit {
 
   solicitarArrendamiento(id: number | null | undefined): void {
     if (id != null && this.isLoggedIn()) {
-      this.router.navigate(['/crear-solicitud', id]);
+      const propiedad = this.propiedades.find(p => p.id_propiedad === id);
+      if (propiedad) {
+        const queryParams = {
+          id: propiedad.id_propiedad,
+          precio: propiedad.precio,
+          ubicacion: propiedad.ubicacion,
+          disponibilidad: propiedad.disponibilidad,
+          descripcion: propiedad.descripcion
+        };
+        this.router.navigate(['/crear-solicitud'], { queryParams });
+      } else {
+        console.error('Propiedad no encontrada');
+      }
     } else {
       console.error('El ID de la propiedad no es válido o el usuario no está autenticado');
     }
   }
 
   isLoggedIn(): boolean {
-    return this.axiosService.getAuthToken() !== null;
+    return this.loginService.isLoggedIn();
   }
 }

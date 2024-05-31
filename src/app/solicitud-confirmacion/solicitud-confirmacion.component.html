@@ -1,0 +1,14 @@
+<div class="confirmation-container">
+    <h1>Solicitud Aceptada</h1>
+    <p>Tu solicitud ha sido aceptada con éxito.</p>
+    <div *ngIf="propiedad">
+      <h3>Resumen de la Propiedad</h3>
+      <p><strong>ID:</strong> {{ propiedad.id }}</p>
+      <p><strong>Precio:</strong> {{ propiedad.precio }}</p>
+      <p><strong>Ubicación:</strong> {{ propiedad.ubicacion }}</p>
+      <p><strong>Disponibilidad:</strong> {{ propiedad.disponibilidad }}</p>
+      <p><strong>Descripción:</strong> {{ propiedad.descripcion }}</p>
+    </div>
+    <button (click)="goToHome()" class="btn btn-primary">Regresar a Inicio</button>
+  </div>
+  
